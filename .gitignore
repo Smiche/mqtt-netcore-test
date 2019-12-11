@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/DataPrismaEA/bin
+/Demo.AspNetCore.PushNotifications.Services/obj
+/Demo.AspNetCore.PushNotifications.Services/bin
+/Demo.AspNetCore.PushNotifications.Services.Abstractions/obj
+/Demo.AspNetCore.PushNotifications.Services.Abstractions/bin
+/Demo.AspNetCore.PushNotifications.Services.PushService/obj
+/Demo.AspNetCore.PushNotifications.Services.PushService/bin
+/Demo.AspNetCore.PushNotifications.Services.Sqlite/obj
+/Demo.AspNetCore.PushNotifications.Services.Sqlite/bin
+/DataPrismaEA/obj/Debug
+/DataPrismaEA/obj/publish/linux-x64
+/DataPrismaEA/obj/Release/netcoreapp3.0

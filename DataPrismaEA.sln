@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPrismaEA", "DataPrismaEA\DataPrismaEA.csproj", "{9D51DB29-074C-476A-ACC6-84CC3EC4FF0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataPrismaEA", "DataPrismaEA\DataPrismaEA.csproj", "{9D51DB29-074C-476A-ACC6-84CC3EC4FF0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D050F73-B893-40BC-865E-E19C4BE42FAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.AspNetCore.PushNotifications.Services", "Demo.AspNetCore.PushNotifications.Services\Demo.AspNetCore.PushNotifications.Services.csproj", "{991B1C4C-F7AA-4655-A537-E2E336605E2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.AspNetCore.PushNotifications.Services.Abstractions", "Demo.AspNetCore.PushNotifications.Services.Abstractions\Demo.AspNetCore.PushNotifications.Services.Abstractions.csproj", "{D88E702A-A1B3-4D0E-9A52-3674B8A6C17D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.AspNetCore.PushNotifications.Services.PushService", "Demo.AspNetCore.PushNotifications.Services.PushService\Demo.AspNetCore.PushNotifications.Services.PushService.csproj", "{8DF55AE5-DB5E-4D01-A321-83B59B53A15E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.AspNetCore.PushNotifications.Services.Sqlite", "Demo.AspNetCore.PushNotifications.Services.Sqlite\Demo.AspNetCore.PushNotifications.Services.Sqlite.csproj", "{8EB6B24B-F34F-4AD6-839F-836646E41B7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,22 @@ Global
 		{9D51DB29-074C-476A-ACC6-84CC3EC4FF0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D51DB29-074C-476A-ACC6-84CC3EC4FF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D51DB29-074C-476A-ACC6-84CC3EC4FF0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{991B1C4C-F7AA-4655-A537-E2E336605E2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991B1C4C-F7AA-4655-A537-E2E336605E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991B1C4C-F7AA-4655-A537-E2E336605E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991B1C4C-F7AA-4655-A537-E2E336605E2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D88E702A-A1B3-4D0E-9A52-3674B8A6C17D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D88E702A-A1B3-4D0E-9A52-3674B8A6C17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D88E702A-A1B3-4D0E-9A52-3674B8A6C17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D88E702A-A1B3-4D0E-9A52-3674B8A6C17D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DF55AE5-DB5E-4D01-A321-83B59B53A15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF55AE5-DB5E-4D01-A321-83B59B53A15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF55AE5-DB5E-4D01-A321-83B59B53A15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF55AE5-DB5E-4D01-A321-83B59B53A15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EB6B24B-F34F-4AD6-839F-836646E41B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB6B24B-F34F-4AD6-839F-836646E41B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB6B24B-F34F-4AD6-839F-836646E41B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB6B24B-F34F-4AD6-839F-836646E41B7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

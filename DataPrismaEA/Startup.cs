@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Hosting;
 using MQTTnet.AspNetCore;
-using MQTTnet.Diagnostics;
+using DataPrismaEA.Services;
+using Demo.AspNetCore.PushNotifications.Services;
+using DataPrismaEA.Formatters;
+using Newtonsoft.Json.Converters;
 using MQTTnet.Server;
-using MQTTnet.Adapter;
-using System.Net.WebSockets;
+using System;
 
 namespace DataPrismaEA
 {
@@ -30,7 +25,7 @@ namespace DataPrismaEA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             //this adds a hosted mqtt server to the services
             //services.AddHostedMqttServer(builder => builder.WithDefaultEndpointPort(1883));
 
@@ -39,11 +34,28 @@ namespace DataPrismaEA
 
             //this adds websocket support
             services.AddMqttWebSocketServerAdapter();
-            ServiceCollectionExtensions.AddHostedMqttServer(services, new MqttServerOptions { });
+
+            services.AddPushSubscriptionStore(Configuration)
+                .AddPushNotificationService(Configuration)
+                .AddPushNotificationsQueue();
+
+            services.AddScoped<IMQTTClientService, MQTTClientService>();
+
+            services.AddControllersWithViews(options =>
+            {
+                options.InputFormatters.Add(new TextPlainInputFormatter());
+            })
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
+            });
+
+
+            MQTTnet.AspNetCore.ServiceCollectionExtensions.AddHostedMqttServer(services, new MqttServerOptions { });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             Console.WriteLine("Configuring backend.");
 
@@ -55,10 +67,24 @@ namespace DataPrismaEA
             {
                 app.UseHsts();
             }
+
+            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+            defaultFilesOptions.DefaultFileNames.Clear();
+            defaultFilesOptions.DefaultFileNames.Add("push-notifications.html");
+
+            app.UseDefaultFiles(defaultFilesOptions)
+                .UseStaticFiles()
+                .UsePushSubscriptionStore()
+                .UseRouting()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
+
             app.UseMqttEndpoint();
             app.UseWebSockets();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            //app.UseMvc();
         }
     }
 }

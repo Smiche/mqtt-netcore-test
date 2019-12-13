@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Lib.Net.Http.WebPush;
 using Demo.AspNetCore.PushNotifications.Services.Abstractions;
+using System;
 
 namespace Demo.AspNetCore.PushNotifications.Services
 {
@@ -48,6 +49,8 @@ namespace Demo.AspNetCore.PushNotifications.Services
                     {
                         await subscriptionStoreAccessor.PushSubscriptionStore.ForEachSubscriptionAsync((PushSubscription subscription) =>
                         {
+                            Console.WriteLine("Sending to subscription right about now: " + subscription.Endpoint);
+                            Task.Delay(1000).Wait();
                             // Fire-and-forget 
                             _notificationService.SendNotificationAsync(subscription, message, _stopTokenSource.Token);
                         }, _stopTokenSource.Token);

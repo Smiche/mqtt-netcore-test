@@ -8,9 +8,9 @@ namespace DataPrismaEA.Types
     public class ChatMessage
     {
         public ChatMessage() { }
-        public string eventId { get; set; }
+        public int eventId { get; set; }
 
-        public string chatRoomId { get; set; }
+        public int chatRoomId { get; set; }
 
         public string content { get; set; }
 

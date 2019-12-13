@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,16 +11,21 @@ namespace DataPrismaEA.Services
 {
     public class MQTTClientService : IMQTTClientService
     {
-        private IMqttClient mqttClient;
+        private static IMqttClient mqttClient;
 
         public MQTTClientService()
         {
             var factory = new MqttFactory();
 
-            mqttClient = factory.CreateMqttClient();
+            if (mqttClient == null)
+            {
+                Console.WriteLine("Creating a new MQTTClient internally");
 
-            var options = new MqttClientOptionsBuilder().WithWebSocketServer("localhost:5000/mqtt").Build();
-            connectClient(options);
+                mqttClient = factory.CreateMqttClient();
+
+                var options = new MqttClientOptionsBuilder().WithWebSocketServer("localhost:5000/mqtt").Build();
+                connectClient(options);
+            }
         }
 
         private async Task<IMqttClient> connectClient(IMqttClientOptions options)
@@ -46,7 +49,7 @@ namespace DataPrismaEA.Services
             {
                 ChatMessage toSend = msg;
                 User newUser = new User();
-                newUser.id = new Random().Next(100);
+                newUser.id = msg.user.id;
                 newUser.name = "TestUser HI_" + new Random().Next(10);
 
                 toSend.timestamp = DateTimeToUnixTimestamp(DateTime.Now) + "";
@@ -58,7 +61,7 @@ namespace DataPrismaEA.Services
                     .WithTopic("/event/" + msg.eventId + "/" + msg.chatRoomId)
                     .WithPayload(payload)
                     .WithExactlyOnceQoS()
-                    .WithRetainFlag()
+                    .WithRetainFlag(false)
                     .Build();
                 mqttClient.PublishAsync(message);
             }

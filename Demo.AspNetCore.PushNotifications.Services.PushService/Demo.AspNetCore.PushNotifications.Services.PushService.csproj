@@ -9,10 +9,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.AspNetCore.WebPush" Version="1.2.0" />
+    <PackageReference Include="Lib.Net.Http.WebPush" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.0.0" />
+    <PackageReference Include="WebPush" Version="1.0.11" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.AspNetCore.PushNotifications.Services.Abstractions\Demo.AspNetCore.PushNotifications.Services.Abstractions.csproj" />
